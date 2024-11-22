@@ -50,16 +50,16 @@ int main() {
             perror("Error creating process");
             return 1;
         } else if (pid == 0) {
-            // Proces copil
+            
             close(pipes[i][0]); // Închide capătul de citire
             int rangeStart = start + i * RANGE;
             int rangeEnd = rangeStart + RANGE - 1;
             findPrimesInRange(rangeStart, rangeEnd, pipes[i][1]);
-            close(pipes[i][1]); // Închide capătul de scriere
+            close(pipes[i][1]);
             exit(0);
         }
-        // Proces părinte
-        close(pipes[i][1]); // Închide capătul de scriere
+        
+        close(pipes[i][1]); 
     }
 
     
