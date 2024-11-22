@@ -51,7 +51,7 @@ int main() {
             return 1;
         } else if (pid == 0) {
             
-            close(pipes[i][0]); // Închide capătul de citire
+            close(pipes[i][0]);
             int rangeStart = start + i * RANGE;
             int rangeEnd = rangeStart + RANGE - 1;
             findPrimesInRange(rangeStart, rangeEnd, pipes[i][1]);
@@ -66,10 +66,10 @@ int main() {
     for (int i = 0; i < NUM_PROCESSES; ++i) {
         int prime;
         while (read(pipes[i][0], &prime, sizeof(prime)) > 0) {
-            if (prime == -1) break; // Marcaj de final
+            if (prime == -1) break; 
             std::cout << "Proces " << i << ": " << prime << std::endl;
         }
-        close(pipes[i][0]); // Închide capătul de citire
+        close(pipes[i][0]); 
     }
 
     
